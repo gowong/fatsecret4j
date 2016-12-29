@@ -60,7 +60,7 @@ public class FoodUtility {
 			array = servingsObj.getJSONArray("serving");
 			servings = ServingUtility.parseServingsFromJSONArray(array);
 		} catch(Exception ignore) {
-			System.out.println("Servings not found");
+			// Ignore
 			array = null;
 		}
 		
@@ -70,7 +70,7 @@ public class FoodUtility {
 				Serving serving = ServingUtility.parseServingFromJSONObject(servingObj);
 				servings.add(serving);
 			} catch(Exception ignore) {
-				System.out.println("Serving not found");
+				// Ignore
 			}
 		}
 

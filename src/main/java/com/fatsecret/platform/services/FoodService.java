@@ -32,10 +32,10 @@ import com.fatsecret.platform.utils.FoodUtility;
  * @version 1.0
  */
 public class FoodService {
-	
+
 	/** Request Object */
 	private Request request;
-	
+
 	/**
 	 * Constructor to set values for APP_KEY and APP_SECRET
 	 *
@@ -45,7 +45,7 @@ public class FoodService {
 	public FoodService(String APP_KEY, String APP_SECRET) {
 		request = new Request(APP_KEY, APP_SECRET);
 	}
-	
+
 	/**
 	 * Returns detailed nutritional information for the specified food
 	 *
@@ -54,22 +54,22 @@ public class FoodService {
 	 */
 	public Food getFood(Long foodId) {
 		JSONObject response = request.getFood(foodId);
-		
+
 		try {
 			if(response != null) {
 				JSONObject food = response.getJSONObject("food");
 				return FoodUtility.parseFoodFromJSONObject(food);
 			}
 		} catch (Exception e) {
-			System.out.println("Exception: " + e.getMessage());
+			// Ignore
 		}
-		
+
 		return null;
 	}
-	
+
 	/**
 	 * Returns response associated with the food items at zeroth page depending on the search query
-	 * 
+	 *
 	 * @param query			search terms for querying food items
 	 * @return				food items at zeroth page based on the query
 	 */
@@ -79,7 +79,7 @@ public class FoodService {
 
 	/**
 	 * Returns response associated with the food items depending on the search query and page number
-	 * 
+	 *
 	 * @param query			search terms for querying food items
 	 * @param pageNumber	page Number to search the food items
 	 * @return				food items at a particular page number based on the query
@@ -89,30 +89,30 @@ public class FoodService {
 		try {
 			if(json != null) {
 				JSONObject foods = json.getJSONObject("foods");
-				
+
 				int maxResults = foods.getInt("max_results");
 				int totalResults = foods.getInt("total_results");
-				
+
 				List<CompactFood> results = new ArrayList<CompactFood>();
-				
+
 				if(totalResults > maxResults * pageNumber) {
 					 JSONArray food = foods.getJSONArray("food");
 					results = FoodUtility.parseCompactFoodListFromJSONArray(food);
 				}
 				
 				Response<CompactFood> response = new Response<CompactFood>();
-				
+
 				response.setPageNumber(pageNumber);
 				response.setMaxResults(maxResults);
 				response.setTotalResults(totalResults);
 				response.setResults(results);
-				
+
 				return response;
 			}
 		} catch (Exception e) {
-			System.out.println("Exception: " + e.getMessage());
+			// Ignore
 		}
-		
+
 		return null;
-	}	
+	}
 }

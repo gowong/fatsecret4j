@@ -60,7 +60,7 @@ public class RecipeService {
 				return RecipeUtility.parseRecipeFromJSONObject(recipe);
 			}
 		} catch (Exception e) {
-			System.out.println("Exception: " + e.getMessage());
+			// Ignore
 		}
 		
 		return null;
@@ -108,7 +108,7 @@ public class RecipeService {
 				return response;
 			}
 		} catch (Exception e) {
-			System.out.println("Exception: " + e.getMessage());			
+			// Ignore
 		}
 		return null;
 	}

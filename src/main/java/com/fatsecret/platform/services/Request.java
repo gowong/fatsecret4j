@@ -56,7 +56,7 @@ public class Request {
 			String apiUrl = builder.buildFoodsSearchUrl(query, pageNumber);
 			return getJSONResponse(apiUrl);
 		} catch (Exception e) {
-			System.out.println("Exception: " + e.getMessage());
+			// Ignore
 		}
 		
 		return null;
@@ -74,7 +74,7 @@ public class Request {
 			String apiUrl = builder.buildFoodSearchUrl(id);
 			return getJSONResponse(apiUrl);
 		} catch (Exception e) {
-			System.out.println("Exception: " + e.getMessage());
+			// Ignore
 		}
 		
 		return null;
@@ -93,7 +93,7 @@ public class Request {
 			String apiUrl = builder.buildRecipesSearchUrl(query, pageNumber);
 			return getJSONResponse(apiUrl);
 		} catch (Exception e) {
-			System.out.println("Exception: " + e.getMessage());
+			// Ignore
 		}
 		
 		return null;
@@ -111,7 +111,7 @@ public class Request {
 			String apiUrl = builder.buildRecipeSearchUrl(id);
 			return getJSONResponse(apiUrl);
 		} catch (Exception e) {
-			System.out.println("Exception: " + e.getMessage());
+			// Ignore
 		}
 		
 		return null;
@@ -138,7 +138,7 @@ public class Request {
 
 			return json;
 		} catch(Exception e) {
-			System.out.println("Exception: " + e.getMessage());
+			// Ignore
 		}
 		
 		return null;
